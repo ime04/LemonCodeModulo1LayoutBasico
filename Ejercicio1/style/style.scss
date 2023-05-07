@@ -1,0 +1,103 @@
+$baseColorPalette1: #a472d2;
+$baseColorPalette2: #468b9e;
+$baseColorPalette3: #97d176;
+$whiteColor: white;
+$blackColor: black;
+
+
+@mixin gradient($color, $isDarken: true) {
+    @if $isDarken {
+        @for $i from 1 through 4 {
+            .darken-#{$i} {
+                background-color: darken($color, 5% * $i);
+                color: $whiteColor;
+            }
+        }
+    }
+
+    @else {
+        @for $i from 1 through 4 {
+            .lighten-#{$i} {
+                background-color: lighten($color, 5% * $i);
+            }
+        }
+    }
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+* {
+    margin: 0;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+main {
+    height: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 20px;
+    height: 15%;
+
+    .box.base-color {
+        flex-grow: 1.5;
+        padding: 20px;
+        height: 80px;
+        border: 1px solid black;
+        border-radius: 5px;
+    }
+
+    .box {
+        flex-grow: 1;
+        padding: 20px;
+        height: 80px;
+        border: 1px solid black;
+        border-radius: 5px;
+        span {
+            display: block;
+            text-align: center;
+        }
+    }
+
+    &-purple {
+        .base-color {
+            background-color: $baseColorPalette1;
+            color: $blackColor;
+        }
+        @include gradient($baseColorPalette1);
+        @include gradient($baseColorPalette1, false);
+    }
+
+    &-blue {
+        .base-color {
+            background-color: $baseColorPalette2;
+            color: $blackColor;
+        }
+        @include gradient($baseColorPalette2);
+        @include gradient($baseColorPalette2, false);
+    }
+
+    &-green {
+       .base-color {
+            background-color: $baseColorPalette3;
+            color: $blackColor;
+        }
+        @include gradient($baseColorPalette3);
+        @include gradient($baseColorPalette3, false);
+    }
+}
